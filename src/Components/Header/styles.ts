@@ -19,6 +19,10 @@ export const Title = styled.h2`
     max-width: 539px;
     width: 100%;
     text-align: center ;
+
+    @media (max-width: 615px){
+        font-size: 24px;
+    }
 `
 
 export const Logo = styled.img`

@@ -29,6 +29,7 @@ export const Button = styled.button`
     padding: 4px 6px;
     color: ${colors.white};
     border: none;
+    cursor: pointer;
 `
 
 export const CardContainer = styled.div`
@@ -40,6 +41,7 @@ export const CardContainer = styled.div`
 export const TitleContainer = styled.div`
     display: flex;
     margin-bottom: 16px;
+    justify-content: space-between;
 
 `
 
@@ -52,4 +54,13 @@ export const Tag = styled.span`
     position: absolute;
     top: 16px;
     right: 16px;
+`
+
+export const Rate = styled.span`
+    margin-right: 8px;
+`
+
+export const RateDiv = styled.div`
+    display: flex;
+    align-items: center;
 `

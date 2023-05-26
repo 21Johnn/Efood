@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
         box-sizing: border-box;
         color: ${colors.rose};
         font-family: 'Roboto', sans-serif;
+        list-style: none;
     }
 
     body{
@@ -26,6 +27,7 @@ const GlobalStyle = createGlobalStyle`
     .container{
         max-width: 1024px;
         width: 100%;
+        margin: 0 auto;
     }
 `
 

@@ -1,10 +1,13 @@
-import { Button, Card, CardContainer, Description, RestaurantBanner, Tag, Title, TitleContainer } from "./styles";
+import { Button, Card, CardContainer, Description, Rate, RateDiv, RestaurantBanner, Tag, Title, TitleContainer } from "./styles";
 import Restaurant1 from '../../Assets/images/image 1.png'
+
+import star from '../../Assets/images/star_favorite-[#1499].png'
+
 
 type Props = {
     title: string
     category: string
-    description: string
+    description?: string
     rate: string
 }
 
@@ -14,7 +17,9 @@ const Restaurant = ({title, category, description, rate}: Props) => (
         <CardContainer>
             <TitleContainer>
                 <Title>titulo</Title>
-                <span>nota<span>star</span></span>
+                <RateDiv>
+                    <Rate>nota</Rate><span><img src={star} alt="" /></span>
+                </RateDiv>
             </TitleContainer>
             <Description>Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida.Experimente o Japão sem sair do lar com nosso delivery!</Description>
             <Button>Saiba mais</Button>

@@ -1,5 +1,7 @@
 import GlobalStyle from './styles';
 import Header from './Components/Header';
+import RestList from './Containers/RestaurantList';
+import Footer from './Components/Footer';
 
 
 function App() {
@@ -7,6 +9,8 @@ function App() {
     <div className="App">
       <GlobalStyle></GlobalStyle>
       <Header></Header>
+      <RestList></RestList>
+      <Footer></Footer>
     </div>
   );
 }
