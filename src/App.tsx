@@ -1,17 +1,19 @@
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import GlobalStyle from './styles';
-import Header from './Components/Header';
-import RestList from './Containers/RestaurantList';
 import Footer from './Components/Footer';
+
+import Rotas from './routes'
 
 
 function App() {
   return (
-    <div className="App">
-      <GlobalStyle></GlobalStyle>
-      <Header></Header>
-      <RestList></RestList>
-      <Footer></Footer>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <GlobalStyle></GlobalStyle>
+        <Rotas/>
+        <Footer></Footer>
+      </div>    
+    </BrowserRouter>
   );
 }
 

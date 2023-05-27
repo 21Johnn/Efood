@@ -24,12 +24,13 @@ export const Description = styled.p`
     margin-bottom: 16px;
 `
 
-export const Button = styled.button`
+export const Button = styled.a`
     background-color: ${colors.rose};
     padding: 4px 6px;
     color: ${colors.white};
     border: none;
     cursor: pointer;
+    text-decoration: none;
 `
 
 export const CardContainer = styled.div`
