@@ -4,7 +4,14 @@ import { Button, Card, CardContainer, Description, Rate, RateDiv, RestaurantBann
 
 import star from '../../Assets/images/star_favorite-[#1499].png'
 
-
+export interface MenuItem {
+    foto: string
+    preco: number
+    id: number
+    nome: string
+    descricao: string
+    porcao: string
+}
 
 export type DadosRestaurante = {
     id: number
@@ -15,14 +22,8 @@ export type DadosRestaurante = {
     descricao: string
     capa: string
     cardapio?: {
-        foto: string
-        preco: number
-        id: number
-        nome: string
-        descricao: string
-        porcao: string
+        
     }
-
 }
 
 const Restaurant = ({titulo, tipo, descricao, avaliacao, capa, id}: DadosRestaurante) => {

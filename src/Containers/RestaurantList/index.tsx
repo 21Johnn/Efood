@@ -16,8 +16,7 @@ const RestList = ({restaurants}: Props) =>(
                     tipo={restaurante.tipo}
                     descricao={restaurante.descricao}
                     avaliacao={restaurante.avaliacao}
-                    capa={restaurante.capa}>                        
-                    </Restaurant>
+                    capa={restaurante.capa} />                        
                 </li>
             ))}
         </List>
