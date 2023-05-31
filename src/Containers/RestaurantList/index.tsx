@@ -1,29 +1,25 @@
-import Restaurant from "../../Components/CardRestaurants";
+import Restaurant, { DadosRestaurante } from "../../Components/CardRestaurants";
 import { List, ListContainer } from "./styles";
 
+type Props = {
+    restaurants: DadosRestaurante[]
+}
 
-
-const RestList = () =>(
+const RestList = ({restaurants}: Props) =>(
     <ListContainer className="container">
         <List>
-            <li>
-                <Restaurant title="Hioki Sushi" category="Japonesa" rate="1"></Restaurant>
-            </li>
-            <li>
-                <Restaurant title="Hioki Sushi" category="Japonesa" rate="1"></Restaurant>
-            </li>
-            <li>
-                <Restaurant title="Hioki Sushi" category="Japonesa" rate="1"></Restaurant>
-            </li>
-            <li>
-                <Restaurant title="Hioki Sushi" category="Japonesa" rate="1"></Restaurant>
-            </li>
-            <li>
-                <Restaurant title="Hioki Sushi" category="Japonesa" rate="1"></Restaurant>
-            </li>
-            <li>
-                <Restaurant title="Hioki Sushi" category="Japonesa" rate="1"></Restaurant>
-            </li>
+            {restaurants.map((restaurante) => (
+                <li key={restaurante.id}>
+                    <Restaurant 
+                    id={restaurante.id}
+                    titulo={restaurante.titulo}
+                    tipo={restaurante.tipo}
+                    descricao={restaurante.descricao}
+                    avaliacao={restaurante.avaliacao}
+                    capa={restaurante.capa}>                        
+                    </Restaurant>
+                </li>
+            ))}
         </List>
     </ListContainer>
 )
