@@ -21,19 +21,19 @@ export type DadosRestaurante = {
     avaliacao: number
     descricao: string
     capa: string
-    cardapio?: {
-        
-    }
+    cardapio?: MenuItem[]
 }
 
+export const getDescription = (descricao: string) => {
+    if (descricao.length > 120) {
+      return descricao.slice(0, 117) + '...'
+    }
+
+    return descricao
+  }
+
 const Restaurant = ({titulo, tipo, descricao, avaliacao, capa, id}: DadosRestaurante) => {
-    const getDescription = (descricao: string) => {
-        if (descricao.length > 120) {
-          return descricao.slice(0, 117) + '...'
-        }
     
-        return descricao
-      }
 
     return(
         <Card>
@@ -46,7 +46,7 @@ const Restaurant = ({titulo, tipo, descricao, avaliacao, capa, id}: DadosRestaur
                     </RateDiv>
                 </TitleContainer>
                 <Description>{getDescription(descricao)}</Description>
-                <Link to="/restaurant"> <Button>Saiba mais</Button> </Link>
+                <Link to={`/restaurant/${id}`}> <Button>Saiba mais</Button> </Link>
             </CardContainer>
             <Tag>{tipo}</Tag>
         </Card>

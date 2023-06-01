@@ -2,11 +2,17 @@ import { BannerDiv, BannerImg, Category, Title } from "./styles";
 
 import bannerImg from '../../Assets/images/image2.png'
 
-const Banner = () => (
-    <BannerImg style={{ backgroundImage: `url(${bannerImg})` }}>
+type Props = {
+    capa:string
+    tipo: string
+    titulo: string
+}
+
+const Banner = ({capa, tipo, titulo}: Props) => (
+    <BannerImg style={{ backgroundImage: `url(${capa})` }}>
         <BannerDiv className="container">
-            <Category>Italiana</Category>
-            <Title>La Dolce Vita Trattoria</Title>
+            <Category>{tipo}</Category>
+            <Title>{titulo}</Title>
         </BannerDiv>
     </BannerImg>
 )
