@@ -15,11 +15,20 @@ export const Modal = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.85);
     display: none;
     justify-content: center;
     align-items: center;
     z-index: 1;
+
+    .overlay{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.83);
+        z-index: -1;
+    }
 
     &.active{
         display: flex;
@@ -79,3 +88,4 @@ export const Close = styled.img`
     top: 8px;
     right: 8px;
 `
+

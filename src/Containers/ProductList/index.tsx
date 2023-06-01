@@ -11,13 +11,6 @@ type ModalState = {
     isVisible: boolean
 }
 
-type Props = {
-    image: string
-    nome: string
-    descricao: string
-    porcao: string
-    preco: number
-}
 
 const ProductList = () => {
     
@@ -27,7 +20,7 @@ const ProductList = () => {
     const [modal, setModal] = useState<ModalState>({
         isVisible: false,
     })
-    const [selectedProduct, setSelectedProduct] = useState<MenuItem[]>([]);
+    const [selectedProduct, setSelectedProduct] = useState<MenuItem>();
     
     useEffect(()=> {
         fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
@@ -41,7 +34,7 @@ const ProductList = () => {
     }
     
     const openModal = (product: MenuItem) => {
-        setSelectedProduct([product]);
+        setSelectedProduct(product);
         setModal({
             isVisible: true,
         });
@@ -61,25 +54,32 @@ const ProductList = () => {
                 
                 </List>
             </div>
-            <Modal className={modal.isVisible ? 'active' : ''}>
-                <ModalContent className="container">
-                    <ModalContainer>
-                        <img src={selectedProduct[0].foto} alt="" />
-                        <div>
-                            <h4>{selectedProduct[0].nome}</h4>
-                            
-                            <p>{selectedProduct[0].descricao}</p>
-                            <span>{selectedProduct[0].porcao}</span>
-                            <button>Adicionar ao carrinho {`R$ ${selectedProduct[0].preco}0`}</button>
-                            
-                        </div>
-                    </ModalContainer>
-                        <Close src={close} alt="fechar" onClick={() => {
-                            setModal({
-                            isVisible: false,
-                            })}} />
-                </ModalContent>
-            </Modal>
+            { 
+                selectedProduct &&
+                <Modal className={modal.isVisible ? 'active' : ''}>
+                    <ModalContent className="container">
+                        <ModalContainer>
+                            <img src={selectedProduct.foto} alt="" />
+                            <div>
+                                <h4>{selectedProduct.nome}</h4>
+                                
+                                <p>{selectedProduct.descricao}</p>
+                                <span>{selectedProduct.porcao}</span>
+                                <button>Adicionar ao carrinho {`R$ ${selectedProduct.preco}0`}</button>
+                                
+                            </div>
+                        </ModalContainer>
+                            <Close src={close} alt="fechar" onClick={() => {
+                                setModal({
+                                isVisible: false,
+                                })}} />
+                    </ModalContent>
+                    <div className="overlay" onClick={() => {
+                                setModal({
+                                isVisible: false,
+                                })}}></div>
+                </Modal>
+            }
         </>
     )
 }
