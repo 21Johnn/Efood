@@ -6,6 +6,8 @@ import Product from "../../Components/Product";
 import { Close, List, Modal, ModalContainer, ModalContent } from "./styles";
 
 import close from '../../Assets/images/close 1.png'
+import { useDispatch } from "react-redux";
+import {add, open} from '../../store/reducers/cart'
 
 type ModalState = {
     isVisible: boolean
@@ -21,6 +23,13 @@ const ProductList = () => {
         isVisible: false,
     })
     const [selectedProduct, setSelectedProduct] = useState<MenuItem>();
+
+    const dispatch = useDispatch()
+
+        const addToCart = () =>{
+        dispatch(add(selectedProduct!))
+        dispatch(open())
+    }
     
     useEffect(()=> {
         fetch(`https://fake-api-tau.vercel.app/api/efood/restaurantes/${id}`)
@@ -40,6 +49,8 @@ const ProductList = () => {
         });
         console.log([product])
     };
+
+    
     
 
     return(
@@ -65,7 +76,7 @@ const ProductList = () => {
                                 
                                 <p>{selectedProduct.descricao}</p>
                                 <span>{selectedProduct.porcao}</span>
-                                <button>Adicionar ao carrinho {`R$ ${selectedProduct.preco}0`}</button>
+                                <button onClick={addToCart}>Adicionar ao carrinho {`R$ ${selectedProduct.preco}0`}</button>
                                 
                             </div>
                         </ModalContainer>

@@ -3,21 +3,23 @@ import { DadosRestaurante } from "../../Components/CardRestaurants";
 import Header from "../../Components/Header";
 import RestList from "../../Containers/RestaurantList";
 
+import { useGetRestaurantsQuery } from "../../services/api";
+
 const Home = () => {
-    const [restaurante, setRestaurante] = useState<DadosRestaurante[]>([])
 
-  useEffect(() => {
-    fetch('https://fake-api-tau.vercel.app/api/efood/restaurantes')
-      .then((res) => res.json())
-      .then((res) => setRestaurante(res))
-  }, [])
+  const {data: restaurante, isLoading} = useGetRestaurantsQuery()
 
+  if(restaurante){
     return(
         <>
             <Header></Header>
             <RestList restaurants={restaurante}></RestList>
         </>
-    )
+    )    
+  }
+
+  return <h3>CARREGANDO...</h3>
+
 }
 
 export default Home

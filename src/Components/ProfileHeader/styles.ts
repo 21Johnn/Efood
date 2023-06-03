@@ -25,4 +25,10 @@ export const Logo = styled.img`
     height: 57px;
 `
 
-export const Cart = styled.span``
+export const CartButton = styled.button`
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    font-weight: bold;
+`
