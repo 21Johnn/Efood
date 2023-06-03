@@ -7,10 +7,9 @@ import {
     Sidebar
 } from './styles'
   
-import img from '../../Assets/images/image 1.png'
 import { RootReducer } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
-import {close} from '../../store/reducers/cart'
+import {close, remove} from '../../store/reducers/cart'
 
 export const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pt-BR', {
@@ -27,6 +26,10 @@ const Cart = () => {
 
     const closeCart = () => {
         dispatch(close())
+    }
+
+    const removeItem = (id: number) =>{
+      dispatch(remove(id))
     }
 
     const getTotal = () => {
@@ -47,7 +50,7 @@ const Cart = () => {
                   <h3>{item.nome}</h3>
                   <span>{formataPreco(item.preco)}</span>
                 </div>
-                <button/>
+                <button onClick={() => removeItem(item.id)}/>
               </CartItem>
             ))}
           </ul>
