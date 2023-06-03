@@ -1,8 +1,12 @@
 import styled from "styled-components";
 import { colors } from "../../styles";
 
+import bg from '../../Assets/images/Vector3.png'
+
 export const HeaderContainer = styled.header`
-    background-color: ${colors.beige};
+    background-image: url(${bg});
+    background-size: cover;
+    background-repeat: no-repeat;
     height: 384px;
     padding: 40px;
     display: flex;

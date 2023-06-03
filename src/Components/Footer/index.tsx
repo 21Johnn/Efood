@@ -3,7 +3,7 @@ import { Copy, FooterContaine, LogoFooter, SocialIcon, Socialcontainer } from ".
 
 import Facebook from '../../Assets/images/Vector (1).png'
 import Tt from '../../Assets/images/Vector.png'
-import Insta from '../../Assets/images/Vector (2).png'
+import Insta from '../../Assets/images/instagram-round-svgrepo-com (1) 1.png'
 import logo from '../../Assets/images/logo.png'
 
 const Footer = () => (

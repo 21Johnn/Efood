@@ -55,7 +55,8 @@ const Cart = () => {
             ))}
           </ul>
           <Prices>
-            {formataPreco(getTotal())}
+            Valor total <span>{formataPreco(getTotal())}</span>
+            
           </Prices>
           <Button>Continuar com a entrega</Button>
         </Sidebar>

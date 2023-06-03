@@ -46,6 +46,12 @@ export const Prices = styled.p`
     margin-bottom: 24px;
     margin-top: 16px;
     margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+
+    span{
+        color: ${colors.white};
+    }
 `
 export const CartItem = styled.li`
     display: flex;

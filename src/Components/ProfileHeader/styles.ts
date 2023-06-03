@@ -9,6 +9,7 @@ export const Header = styled.header`
     font-size: 18px;
     display: flex;
     align-items: center;
+
 `
 export const HeaderContainer = styled.div`
     display: flex;
@@ -29,6 +30,7 @@ export const CartButton = styled.button`
     cursor: pointer;
     background-color: transparent;
     border: none;
-    font-size: 14px;
-    font-weight: bold;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 21px;
 `

@@ -8,6 +8,7 @@ import { Close, List, Modal, ModalContainer, ModalContent } from "./styles";
 import close from '../../Assets/images/close 1.png'
 import { useDispatch } from "react-redux";
 import {add, open} from '../../store/reducers/cart'
+import { formataPreco } from "../../Components/Cart";
 
 type ModalState = {
     isVisible: boolean
@@ -76,7 +77,7 @@ const ProductList = () => {
                                 
                                 <p>{selectedProduct.descricao}</p>
                                 <span>{selectedProduct.porcao}</span>
-                                <button onClick={addToCart}>Adicionar ao carrinho {`R$ ${selectedProduct.preco}0`}</button>
+                                <button onClick={addToCart}>Adicionar ao carrinho {formataPreco(selectedProduct.preco)}</button>
                                 
                             </div>
                         </ModalContainer>

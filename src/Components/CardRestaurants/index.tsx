@@ -26,7 +26,7 @@ export type DadosRestaurante = {
 
 export const getDescription = (descricao: string) => {
     if (descricao.length > 120) {
-      return descricao.slice(0, 117) + '...'
+      return descricao.slice(0, 127) + '...'
     }
 
     return descricao
