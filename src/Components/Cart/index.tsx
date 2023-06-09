@@ -16,6 +16,7 @@ import {close, remove, clear} from '../../store/reducers/cart'
 import { useFormik } from 'formik'
 import { usePurchaseMutation } from '../../services/api'
 import { useState } from 'react'
+import InputMask from 'react-input-mask'
 
 export const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pt-BR', {
@@ -69,13 +70,13 @@ const Cart = () => {
         fullName: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         address: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         city: Yup.string().min(4, 'O campo precisa ter pelo menos 4 caracteres').required('Campo obrigatorio'),
-        CEP: Yup.string().min(9, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
+        CEP: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         number: Yup.number().min(2, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         cardName: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         cardNumber: Yup.number().min(16, 'O campo precisa ter pelo menos 16 caracteres').required('Campo obrigatorio'),
         cvv: Yup.number().min(3, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
-        expiresMonth: Yup.number().min(2, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
-        expiresYear: Yup.number().min(4, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
+        expiresMonth: Yup.string().min(1, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
+        expiresYear: Yup.string().min(4, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
       }),
       onSubmit: (values) => {
         console.log(values)
@@ -108,6 +109,7 @@ const Cart = () => {
         })
       }
     })
+    console.log(form)
 
     const checkInput = (fieldName: string) => {
       const isTouched = fieldName in form.touched
@@ -134,11 +136,12 @@ const Cart = () => {
       if(!form.errors.fullName &&
         !form.errors.address &&
         !form.errors.city && 
-        !form.errors.CEP){
-          setPaymentData(true)
-        setPurchaseData(false)
+        !form.errors.CEP &&
+        !form.errors.number){
+          setPurchaseData(false)
+          setPaymentData(true)          
       }
-      }     
+    }     
 
     const backToPurchase = () => {
       setPaymentData(false)
@@ -191,11 +194,11 @@ const Cart = () => {
         )}
         <Sidebar className={purchaseData ? '' : 'is-closed'}>
             <Title>Entrega</Title>
-            <form onSubmit={form.handleSubmit}>
+            <form className='margin-bottom' onSubmit={form.handleSubmit}>
               <div>
                 <label htmlFor="fullName">Quem irá receber</label>
                 <input type="text" name='fullName' id='fullName' onChange={form.handleChange}
-                    onBlur={form.handleBlur} className={checkInput('fullName') ? 'error' : ''}/>
+                    onBlur={form.handleBlur} className={checkInput('fullName') ? 'error' : ''} required/>
               </div>
               <div>
                 <label htmlFor="address">Endereço</label>
@@ -224,9 +227,9 @@ const Cart = () => {
                   <input type="text" name='reference' id='reference' onChange={form.handleChange}
                     onBlur={form.handleBlur} />
               </div>
-              <Button className='margin-top' type='button' onClick={goToPayment}>Continuar com pagamento</Button>
-              <Button type='button' onClick={backToCart}>Voltar para carrinho</Button>
             </form>
+              {form.dirty ? (<Button type='button' onClick={goToPayment}>Continuar com pagamento</Button>) : ''}              
+              <Button type='button' onClick={backToCart}>Voltar para carrinho</Button>
         </Sidebar>
         <Sidebar className={paymentData ? '' : 'is-closed'}>
             <Title>Pagamento - Valor a pagar {formataPreco(getTotal())}</Title>
@@ -251,12 +254,12 @@ const Cart = () => {
               <InputGroup>
                 <div>
                   <label htmlFor="expiresMonth">Mês de vencimento</label>
-                  <input type="number" name='expiresMonth' id='expiresMonth' onChange={form.handleChange}
-                    onBlur={form.handleBlur}  className={checkInput('expiresMonth') ? 'error' : ''} />
+                  <input type="text" name='expiresMonth' id='expiresMonth' onChange={form.handleChange}
+                    onBlur={form.handleBlur}  className={checkInput('expiresMonth') ? 'error' : ''}/>
                 </div>
                 <div>
                   <label htmlFor="expiresYear">Ano de vencimento</label>
-                  <input type="text" name='expiresYear' id='expiresYear' onChange={form.handleChange}
+                  <input type="text" name='expiresYear' id='expiresYear'onChange={form.handleChange}
                     onBlur={form.handleBlur} className={checkInput('expiresYear') ? 'error' : ''}/>
                 </div>
               </InputGroup>

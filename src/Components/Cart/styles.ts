@@ -155,5 +155,6 @@ export const Button = styled.button`
     font-weight: bold;  
     font-size: 14px;
     cursor: pointer;
+    margin-bottom: 8px;
 `
 
