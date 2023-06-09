@@ -16,7 +16,7 @@ import {close, remove, clear} from '../../store/reducers/cart'
 import { useFormik } from 'formik'
 import { usePurchaseMutation } from '../../services/api'
 import { useState } from 'react'
-import InputMask from 'react-input-mask'
+import { useNavigate } from 'react-router-dom'
 
 export const formataPreco = (preco = 0) => {
   return new Intl.NumberFormat('pt-BR', {
@@ -34,9 +34,9 @@ const Cart = () => {
   const [purchaseData, setPurchaseData] = useState(false)  
   const [paymentData, setPaymentData] = useState(false)  
   const [checkout, setCheckout] = useState(false) 
-  const [emptyCart, setEmptyCart] = useState(false) 
-
+  const [emptyCart, setEmptyCart] = useState(false)   
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
     const closeCart = () => {
         dispatch(close())
@@ -73,7 +73,7 @@ const Cart = () => {
         CEP: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         number: Yup.number().min(2, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         cardName: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
-        cardNumber: Yup.number().min(16, 'O campo precisa ter pelo menos 16 caracteres').required('Campo obrigatorio'),
+        cardNumber: Yup.string().min(16, 'O campo precisa ter pelo menos 16 caracteres').required('Campo obrigatorio'),
         cvv: Yup.number().min(3, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         expiresMonth: Yup.string().min(1, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         expiresYear: Yup.string().min(4, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
@@ -162,36 +162,38 @@ const Cart = () => {
       setCheckout(false)
       closeCart()
       setEmptyCart(false)
+      navigate('/')
     }
+
+
   
     return (
-      <CartContainer className={isOpen ? 'is-open' : ''}>
-        <Overlay onClick={closeCart}/>
-        {items.length < 1 ? (
+      <CartContainer className={isOpen ? 'is-open' : ''}>        
+          <Overlay onClick={closeCart}/>
           <Sidebar className={cart ? '' : 'is-closed'}>
-            <Title>Carrinho vazio</Title>
-          </Sidebar>
+        {items.length < 1 ? (
+            <div>
+              <Title>Carrinho vazio</Title>
+            </div>
         ) : (
-          <Sidebar className={cart ? '' : 'is-closed'} >
-            <ul>
-              {items.map((item) => (
-                <CartItem key={item.id}>
-                  <img src={item.foto} alt={item.nome}/>
-                  <div>
-                    <h3>{item.nome}</h3>
-                    <span>{formataPreco(item.preco)}</span>
-                  </div>
-                  <button onClick={() => removeItem(item.id)}/>
-                </CartItem>
-              ))}
-            </ul>
-            <Prices>
-              Valor total <span>{formataPreco(getTotal())}</span>
-              
-            </Prices>
-            <Button onClick={goToPurchase}>Continuar com a entrega</Button>
-          </Sidebar>
+              <ul>
+                {items.map((item) => (
+                  <CartItem key={item.id}>
+                    <img src={item.foto} alt={item.nome}/>
+                    <div>
+                      <h3>{item.nome}</h3>
+                      <span>{formataPreco(item.preco)}</span>
+                    </div>
+                    <button onClick={() => removeItem(item.id)}/>
+                  </CartItem>
+                ))}
+              </ul>
         )}
+              <Prices>
+                Valor total <span>{formataPreco(getTotal())}</span>                
+              </Prices>
+              <Button onClick={goToPurchase}>Continuar com a entrega</Button>                    
+          </Sidebar>
         <Sidebar className={purchaseData ? '' : 'is-closed'}>
             <Title>Entrega</Title>
             <form className='margin-bottom' onSubmit={form.handleSubmit}>
@@ -268,7 +270,7 @@ const Cart = () => {
             </form>
         </Sidebar>
         {isSuccess ? (
-          <Sidebar >
+          <Sidebar className={checkout ? '' : 'is-closed'}>
             <Title>Pedido realizado - {data.orderId}</Title>
             <p>
               Estamos felizes em informar que seu pedido já está em processo de preparação e, em breve, será entregue no endereço fornecido.

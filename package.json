@@ -16,7 +16,6 @@
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.7",
     "react-router": "^6.11.2",
-    "react-router-dom": "^6.11.2",
     "react-scripts": "5.0.1",
     "styled-components": "^5.3.10",
     "typescript": "^4.9.5",
@@ -50,6 +49,7 @@
   "devDependencies": {
     "@types/react-input-mask": "^3.0.2",
     "@types/styled-components": "^5.1.26",
-    "react-input-mask": "^2.0.4"
+    "react-input-mask": "^2.0.4",
+    "react-router-dom": "^6.12.1"
   }
 }

@@ -39,8 +39,9 @@ export const Sidebar = styled.aside`
     padding: 40px 16px 0 16px;
 
     &.is-closed{
-        display: none;
+        display: none;    
     }
+
 
     label{
         font-weight: 700;
