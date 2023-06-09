@@ -37,6 +37,61 @@ export const Sidebar = styled.aside`
     max-width: 360px;
     width: 100%;
     padding: 40px 16px 0 16px;
+
+    &.is-closed{
+        display: none;
+    }
+
+    label{
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        color: ${colors.beige};
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    input{
+        background-color: ${colors.beige};
+        height: 32px;
+        padding: 8px;
+        border: none;
+        width: 100%;
+        margin-bottom: 8px;
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 16px;
+        color: black;
+        
+        &.error{
+            border: 2px solid red;
+            color: red;
+        }
+    }
+
+    p{
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 22px;
+        color: ${colors.beige};
+        margin-bottom: 16px;
+    }
+`
+export const Title = styled.h3`
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: ${colors.beige};
+    margin-bottom: 16px;
+`
+
+export const InputGroup = styled.div`
+    display: flex;
+    gap: 34px;
+
+    #cardNumber{
+        width: 228px;
+    }
 `
 
 export const Prices = styled.p`
@@ -101,3 +156,4 @@ export const Button = styled.button`
     font-size: 14px;
     cursor: pointer;
 `
+

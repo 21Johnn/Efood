@@ -5,9 +5,9 @@ import { DadosRestaurante, MenuItem, getDescription } from "../../Components/Car
 import Product from "../../Components/Product";
 import { Close, List, Modal, ModalContainer, ModalContent } from "./styles";
 
-import close from '../../Assets/images/close 1.png'
+import closeIcon from '../../Assets/images/close 1.png'
 import { useDispatch } from "react-redux";
-import {add, open} from '../../store/reducers/cart'
+import {add, open, close} from '../../store/reducers/cart'
 import { formataPreco } from "../../Components/Cart";
 
 type ModalState = {
@@ -27,9 +27,12 @@ const ProductList = () => {
 
     const dispatch = useDispatch()
 
-        const addToCart = () =>{
+    const addToCart = () =>{
         dispatch(add(selectedProduct!))
         dispatch(open())
+        setModal({
+            isVisible: false
+        })
     }
     
     useEffect(()=> {
@@ -81,7 +84,7 @@ const ProductList = () => {
                                 
                             </div>
                         </ModalContainer>
-                            <Close src={close} alt="fechar" onClick={() => {
+                            <Close src={closeIcon} alt="fechar" onClick={() => {
                                 setModal({
                                 isVisible: false,
                                 })}} />
