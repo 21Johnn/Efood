@@ -68,7 +68,7 @@ const Cart = () => {
       validationSchema: Yup.object({
         fullName: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         address: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
-        city: Yup.string().min(4, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
+        city: Yup.string().min(4, 'O campo precisa ter pelo menos 4 caracteres').required('Campo obrigatorio'),
         CEP: Yup.string().min(9, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         number: Yup.number().min(2, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
         cardName: Yup.string().min(8, 'O campo precisa ter pelo menos 8 caracteres').required('Campo obrigatorio'),
@@ -131,30 +131,26 @@ const Cart = () => {
 
     const goToPayment = () => {
       
-      if(!form.errors.fullName ||
-        !form.errors.address ||
-        !form.errors.city || 
+      if(!form.errors.fullName &&
+        !form.errors.address &&
+        !form.errors.city && 
         !form.errors.CEP){
-      } else{
-        setPaymentData(true)
+          setPaymentData(true)
         setPurchaseData(false)
-      }      
-    }
+      }
+      }     
 
     const backToPurchase = () => {
       setPaymentData(false)
       setPurchaseData(true)
     }
     
-    const goToCheckout = () => {
-      
+    const goToCheckout = () => {     
 
-      if(!form.errors.cardName || !form.errors.cardNumber || !form.errors.cvv || !form.errors.expiresMonth || !form.errors.expiresYear){
-        alert('Preencha os campos corretamente')
-      } else{
+      if(!form.errors.cardName && !form.errors.cardNumber && !form.errors.cvv && !form.errors.expiresMonth && !form.errors.expiresYear){
         setPaymentData(false)
         setCheckout(true)
-        dispatch(clear())
+        dispatch(clear())        
       }
     }
 
